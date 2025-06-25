@@ -52,8 +52,6 @@ Built with a **clean, responsive UI** and real-time interactions, this project b
 
 ---
 
-## **📸 Preview**  
-*(Optional: Add a screenshot or GIF of the UI here for visual appeal.)*  
 
 ---
 
