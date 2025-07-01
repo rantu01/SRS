@@ -1,13 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router';
-import { FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
-import { FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa';
+import React from "react";
+import { Link } from "react-router";
+import { FiMail, FiPhone, FiMapPin } from "react-icons/fi";
+import { FaLinkedin, FaTwitter, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-
-
-  
 
   return (
     <footer className="bg-gradient-to-b from-gray-900 to-gray-800 text-gray-300 pt-16 pb-8">
@@ -24,16 +21,26 @@ const Footer = () => {
               </span>
             </div>
             <p className="mb-6 text-gray-400">
-              Connecting businesses with quality service providers through trusted reviews and ratings.
+              Connecting businesses with quality service providers through
+              trusted reviews and ratings.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-amber-500 transition-colors">
+              <a
+                href="#"
+                className="text-gray-400 hover:text-amber-500 transition-colors"
+              >
                 <FaLinkedin className="w-5 h-5" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-amber-500 transition-colors">
+              <a
+                href="#"
+                className="text-gray-400 hover:text-amber-500 transition-colors"
+              >
                 <FaTwitter className="w-5 h-5" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-amber-500 transition-colors">
+              <a
+                href="#"
+                className="text-gray-400 hover:text-amber-500 transition-colors"
+              >
                 <FaInstagram className="w-5 h-5" />
               </a>
             </div>
@@ -41,11 +48,13 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div className="lg:ml-12">
-            <h3 className="text-lg font-semibold text-white mb-6 uppercase tracking-wider">Quick Links</h3>
+            <h3 className="text-lg font-semibold text-white mb-6 uppercase tracking-wider">
+              Quick Links
+            </h3>
             <ul className="space-y-3">
               <li>
-                <Link 
-                  to="/" 
+                <Link
+                  to="/"
                   className="text-gray-400 hover:text-amber-500 transition-colors flex items-center"
                 >
                   <span className="w-1 h-1 bg-amber-500 rounded-full mr-2"></span>
@@ -53,17 +62,26 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/all-Services" 
+                <Link
+                  to="/all-Services"
                   className="text-gray-400 hover:text-amber-500 transition-colors flex items-center"
                 >
                   <span className="w-1 h-1 bg-amber-500 rounded-full mr-2"></span>
                   All Services
                 </Link>
               </li>
+            </ul>
+          </div>
+
+          {/* Support */}
+          <div>
+            <h3 className="text-lg font-semibold text-white mb-6 uppercase tracking-wider">
+              Support
+            </h3>
+            <ul className="space-y-3">
               <li>
-                <Link 
-                  to="/add-Service" 
+                <Link
+                  to="/add-Service"
                   className="text-gray-400 hover:text-amber-500 transition-colors flex items-center"
                 >
                   <span className="w-1 h-1 bg-amber-500 rounded-full mr-2"></span>
@@ -71,8 +89,8 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/My-Service" 
+                <Link
+                  to="/My-Service"
                   className="text-gray-400 hover:text-amber-500 transition-colors flex items-center"
                 >
                   <span className="w-1 h-1 bg-amber-500 rounded-full mr-2"></span>
@@ -82,66 +100,35 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Support */}
-          <div>
-            <h3 className="text-lg font-semibold text-white mb-6 uppercase tracking-wider">Support</h3>
-            <ul className="space-y-3">
-              <li>
-                <Link 
-                  to="/" 
-                  className="text-gray-400 hover:text-amber-500 transition-colors flex items-center"
-                >
-                  <span className="w-1 h-1 bg-amber-500 rounded-full mr-2"></span>
-                  Contact Us
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  to="/" 
-                  className="text-gray-400 hover:text-amber-500 transition-colors flex items-center"
-                >
-                  <span className="w-1 h-1 bg-amber-500 rounded-full mr-2"></span>
-                  FAQ
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  to="/" 
-                  className="text-gray-400 hover:text-amber-500 transition-colors flex items-center"
-                >
-                  <span className="w-1 h-1 bg-amber-500 rounded-full mr-2"></span>
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  to="/" 
-                  className="text-gray-400 hover:text-amber-500 transition-colors flex items-center"
-                >
-                  <span className="w-1 h-1 bg-amber-500 rounded-full mr-2"></span>
-                  Terms of Service
-                </Link>
-              </li>
-            </ul>
-          </div>
-
           {/* Contact Info */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-6 uppercase tracking-wider">Contact Us</h3>
+            <h3 className="text-lg font-semibold text-white mb-6 uppercase tracking-wider">
+              Contact Us
+            </h3>
             <ul className="space-y-4">
               <li className="flex items-start">
                 <FiMapPin className="text-amber-500 mt-1 mr-3 flex-shrink-0" />
-                <span className="text-gray-400">Bankers Lane #3, Bagmara MainRoad<br />Bangladesh, Khulna </span>
+                <span className="text-gray-400">
+                  Bankers Lane #3, Bagmara MainRoad
+                  <br />
+                  Bangladesh, Khulna{" "}
+                </span>
               </li>
               <li className="flex items-center">
                 <FiMail className="text-amber-500 mr-3" />
-                <a href="mailto:info@servicereview.com" className="text-gray-400 hover:text-amber-500 transition-colors">
+                <a
+                  href="mailto:info@servicereview.com"
+                  className="text-gray-400 hover:text-amber-500 transition-colors"
+                >
                   rantumondal06@gmail.com
                 </a>
               </li>
               <li className="flex items-center">
                 <FiPhone className="text-amber-500 mr-3" />
-                <a href="tel:+11234567890" className="text-gray-400 hover:text-amber-500 transition-colors">
+                <a
+                  href="tel:+11234567890"
+                  className="text-gray-400 hover:text-amber-500 transition-colors"
+                >
                   +88 01*******37
                 </a>
               </li>
@@ -158,13 +145,22 @@ const Footer = () => {
             &copy; {currentYear} Rantu. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link to="/" className="text-gray-500 hover:text-amber-500 text-sm transition-colors">
+            <Link
+              to="/"
+              className="text-gray-500 hover:text-amber-500 text-sm transition-colors"
+            >
               Sitemap
             </Link>
-            <Link to="/" className="text-gray-500 hover:text-amber-500 text-sm transition-colors">
+            <Link
+              to="/"
+              className="text-gray-500 hover:text-amber-500 text-sm transition-colors"
+            >
               Accessibility
             </Link>
-            <Link to="/" className="text-gray-500 hover:text-amber-500 text-sm transition-colors">
+            <Link
+              to="/"
+              className="text-gray-500 hover:text-amber-500 text-sm transition-colors"
+            >
               Cookie Policy
             </Link>
           </div>

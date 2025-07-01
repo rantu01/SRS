@@ -8,6 +8,7 @@ const AllServices = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [category, setCategory] = useState("");
   const [categories, setCategories] = useState([]);
+  const [sortOption, setSortOption] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -21,6 +22,7 @@ const AllServices = () => {
           params: {
             search: searchTerm,
             category: category,
+            sort: sortOption, // 🟢 Send sort option
           },
         }
       );
@@ -35,7 +37,7 @@ const AllServices = () => {
 
   useEffect(() => {
     fetchServices();
-  }, [searchTerm, category]);
+  }, [searchTerm, category, sortOption]);
 
   useEffect(() => {
     setCategories([
@@ -51,7 +53,7 @@ const AllServices = () => {
   }, []);
 
   return (
-    <div className=" mx-auto px-12 sm:px-6 lg:px-8 py-12 bg-gradient-to-b from-amber-50">
+    <div className="mx-auto px-12 sm:px-6 lg:px-8 py-12 bg-gradient-to-b from-amber-50">
       <Helmet>
         <title>All Services | SRS</title>
       </Helmet>
@@ -71,7 +73,7 @@ const AllServices = () => {
             {/* Loading */}
             {isLoading && (
               <div className="flex justify-center items-center py-20">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-amber-500"></div>
               </div>
             )}
 
@@ -149,7 +151,7 @@ const AllServices = () => {
                         <h3 className="text-xl font-bold text-gray-900 line-clamp-1">
                           {service.title}
                         </h3>
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-amber-800">
                           ${service.price}
                         </span>
                       </div>
@@ -159,12 +161,12 @@ const AllServices = () => {
                       <p className="text-amber-600 mb-4 line-clamp-2">
                         {service.category}
                       </p>
-                      <p className="text-blue-600 mb-4 line-clamp-2 font-bold">
+                      <p className="text-amber-600 mb-4 line-clamp-2 font-bold">
                         Company : {service.company}
                       </p>
                       <Link
                         to={`/services/${service._id}`}
-                        className="w-full inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200"
+                        className="w-full inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-amber-600 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 transition-colors duration-200"
                       >
                         View Details
                         <svg
@@ -188,7 +190,7 @@ const AllServices = () => {
           </div>
 
           {/* Right Side - Filters */}
-          <div className="lg:col-span-4 ">
+          <div className="lg:col-span-4">
             <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 space-y-6 sticky top-34 bg-gradient-to-br from-amber-50">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -219,6 +221,23 @@ const AllServices = () => {
                       {cat}
                     </option>
                   ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Sort by
+                </label>
+                <select
+                  className="block w-full px-4 py-3 text-base border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  value={sortOption}
+                  onChange={(e) => setSortOption(e.target.value)}
+                >
+                  <option value="">Default</option>
+                  <option value="price_asc">Price: Low to High</option>
+                  <option value="price_desc">Price: High to Low</option>
+                  <option value="latest">Newest First</option>
+                  <option value="oldest">Oldest First</option>
                 </select>
               </div>
             </div>

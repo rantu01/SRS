@@ -73,7 +73,7 @@ const Login = () => {
       </Helmet>
       <div className="flex bg-white rounded-lg shadow-lg border overflow-hidden max-w-sm lg:max-w-4xl w-full">
         <div
-          className="hidden md:block lg:w-1/2 bg-cover bg-blue-700"
+          className="hidden md:block lg:w-1/2 bg-cover bg-amber-700"
           style={{
             backgroundImage: `url(https://www.tailwindtap.com//assets/components/form/userlogin/login_tailwindtap.jpg)`,
           }}
@@ -88,7 +88,7 @@ const Login = () => {
               </label>
               <input
                 name="email"
-                className="text-gray-700 border border-gray-300 rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700"
+                className="text-gray-700 border border-gray-300 rounded py-2 px-4 block w-full focus:outline-2 focus:outline-amber-700"
                 type="email"
                 required
               />
@@ -100,7 +100,7 @@ const Login = () => {
               </label>
               <input
                 name="password"
-                className="text-gray-700 border border-gray-300 rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700"
+                className="text-gray-700 border border-gray-300 rounded py-2 px-4 block w-full focus:outline-2 focus:outline-amber-700"
                 type="password"
                 required
               />
@@ -115,7 +115,7 @@ const Login = () => {
             <div className="mt-8">
               <button
                 type="submit"
-                className="bg-blue-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-blue-600"
+                className="bg-amber-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-amber-600"
               >
                 Login
               </button>
@@ -159,7 +159,7 @@ const Login = () => {
             <p className="text-xs text-gray-500 capitalize text-center w-full">
               Don&apos;t have an account?
               <Link to="/register">
-                <span className="text-blue-700 cursor-pointer ml-1">
+                <span className="text-amber-700 cursor-pointer ml-1">
                   Sign Up
                 </span>
               </Link>

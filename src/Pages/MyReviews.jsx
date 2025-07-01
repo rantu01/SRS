@@ -81,9 +81,12 @@ const MyReviews = () => {
 
     if (result.isConfirmed) {
       try {
-        await axios.delete(`https://srs-backend-3wa7.onrender.com/reviews/${id}`, {
-          withCredentials: true, // ✅ Ensures JWT cookie is sent
-        });
+        await axios.delete(
+          `https://srs-backend-3wa7.onrender.com/reviews/${id}`,
+          {
+            withCredentials: true, // ✅ Ensures JWT cookie is sent
+          }
+        );
         setReviews(reviews.filter((r) => r._id !== id));
         Swal.fire({
           title: "Success!",
@@ -185,7 +188,7 @@ const MyReviews = () => {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center min-h-[300px]">
+      <div className="flex justify-center items-center min-h-[60vh]">
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
@@ -196,15 +199,15 @@ const MyReviews = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-4 md:p-6">
+    <div className="max-w-4xl mx-auto p-4 md:p-6 h-[60vh] ">
       <Helmet>
         <title>My Reviews | SRS</title>
       </Helmet>
-      <div className="flex justify-between items-center mb-8">
+      <div className="mb-8 text-center">
         <motion.h2
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-2xl md:text-3xl font-bold "
+          className="text-2xl md:text-3xl font-bold"
         >
           My Reviews
         </motion.h2>
@@ -212,7 +215,7 @@ const MyReviews = () => {
           <motion.span
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium shadow-md"
+            className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium shadow-md inline-block mt-2"
           >
             {reviews.length} {reviews.length === 1 ? "Review" : "Reviews"}
           </motion.span>
@@ -250,74 +253,83 @@ const MyReviews = () => {
           </p>
         </motion.div>
       ) : (
-        <div className="space-y-6">
-          <AnimatePresence>
-            {reviews.map((review) => (
-              <motion.div
-                key={review._id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, x: -50 }}
-                transition={{ duration: 0.3 }}
-                className="border border-gray-200 dark:border-gray-700 rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow duration-200 bg-white dark:bg-gray-800"
-              >
-                <div className="flex justify-between items-start mb-3">
-                  <div>
-                    <h3 className="text-lg md:text-xl font-semibold text-gray-800 dark:text-white">
-                      {review.serviceTitle}
-                    </h3>
-                    <div className="flex items-center mt-1 text-sm text-gray-500 dark:text-gray-400">
-                      <FaUserCircle className="mr-1" />
-                      <span>You</span>
-                      <span className="mx-2">•</span>
-                      <span>{format(review.createdAt, "MMM d, yyyy")}</span>
+        <div className="overflow-x-auto bg-white dark:bg-gray-800 rounded-lg shadow">
+          <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+            <thead className="bg-gray-50 dark:bg-gray-700">
+              <tr>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                  Service
+                </th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                  Review
+                </th>
+                <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                  Rating
+                </th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                  Date
+                </th>
+                <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+              {reviews.map((review) => (
+                <tr key={review._id}>
+                  <td className="px-4 py-4 whitespace-nowrap text-gray-800 dark:text-white font-medium">
+                    {review.serviceTitle}
+                  </td>
+                  <td className="px-4 py-4 whitespace-pre-line text-gray-600 dark:text-gray-300 max-w-xs">
+                    {review.text}
+                  </td>
+                  <td className="px-4 py-4 text-center whitespace-nowrap">
+                    <div className="flex justify-center items-center space-x-1">
+                      <Rating
+                        readonly
+                        initialRating={review.rating}
+                        emptySymbol={
+                          <FaRegStar className="text-yellow-400 text-lg" />
+                        }
+                        fullSymbol={
+                          <FaStar className="text-yellow-500 text-lg" />
+                        }
+                        fractions={2}
+                      />
+                      <span className="text-gray-600 dark:text-gray-300 font-medium ml-1">
+                        {review.rating.toFixed(1)}
+                      </span>
                     </div>
-                  </div>
-                  <div className="flex items-center space-x-1">
-                    <Rating
-                      readonly
-                      initialRating={review.rating}
-                      emptySymbol={
-                        <FaRegStar className="text-yellow-400 text-lg" />
-                      }
-                      fullSymbol={
-                        <FaStar className="text-yellow-500 text-lg" />
-                      }
-                      fractions={2}
-                    />
-                    <span className="text-gray-600 dark:text-gray-300 font-medium ml-1">
-                      {review.rating.toFixed(1)}
-                    </span>
-                  </div>
-                </div>
-
-                <p className="text-gray-600 dark:text-gray-300 mb-4 whitespace-pre-line">
-                  {review.text}
-                </p>
-
-                <div className="flex justify-end space-x-3">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => openEditModal(review)}
-                    className="flex items-center space-x-1 px-3 py-2 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-md hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors"
-                  >
-                    <FaEdit className="text-sm" />
-                    <span>Edit</span>
-                  </motion.button>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => handleDelete(review._id)}
-                    className="flex items-center space-x-1 px-3 py-2 bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-md hover:bg-red-100 dark:hover:bg-red-900/50 transition-colors"
-                  >
-                    <FaTrash className="text-sm" />
-                    <span>Delete</span>
-                  </motion.button>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
+                  </td>
+                  <td className="px-4 py-4 whitespace-nowrap text-gray-500 dark:text-gray-400">
+                    {format(review.createdAt, "MMM d, yyyy")}
+                  </td>
+                  <td className="px-4 py-4 text-center whitespace-nowrap">
+                    <div className="flex justify-center space-x-3">
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => openEditModal(review)}
+                        className="flex items-center space-x-1 px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-md hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors"
+                      >
+                        <FaEdit className="text-sm" />
+                        <span>Edit</span>
+                      </motion.button>
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => handleDelete(review._id)}
+                        className="flex items-center space-x-1 px-3 py-1 bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-md hover:bg-red-100 dark:hover:bg-red-900/50 transition-colors"
+                      >
+                        <FaTrash className="text-sm" />
+                        <span>Delete</span>
+                      </motion.button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
 

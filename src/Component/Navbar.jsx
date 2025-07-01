@@ -31,6 +31,11 @@ const Navbar = () => {
           All Services
         </NavLink>
       </li>
+      <li className="mx-2 my-1">
+        <NavLink to="/promotion" className={navLinkClass}>
+          Promotional
+        </NavLink>
+      </li>
       {user ? (
         <>
           <li className="mx-2 my-1">
@@ -78,7 +83,7 @@ const Navbar = () => {
   }
 
   return (
-    <header className="lg:sticky top-0 z-50 bg-gradient-to-b from-gray-900 to-gray-800 text-white shadow-lg backdrop-blur-sm bg-opacity-95 pt-4">
+    <header className="sticky top-0 z-50 bg-gradient-to-b from-gray-900 to-gray-800 text-white shadow-lg backdrop-blur-sm bg-opacity-95 pt-4">
       <div className="container mx-auto px-4 py-3">
         <div className="flex justify-between items-center">
           {/* Logo */}

@@ -75,7 +75,7 @@ const ImageSlider = () => {
         {slides.map((slide, index) => (
           <div
             key={index}
-            className="relative h-[70vh] max-h-[800px] w-full rounded-xl overflow-hidden"
+            className="relative h-[60vh] max-h-[800px] w-full rounded-xl overflow-hidden"
           >
             {/* Image with dynamic overlay gradient */}
             <div

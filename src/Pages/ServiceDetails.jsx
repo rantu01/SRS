@@ -92,7 +92,7 @@ const ServiceDetails = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-500"></div>
+        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-amber-500"></div>
       </div>
     );
   }
@@ -132,7 +132,7 @@ const ServiceDetails = () => {
                 <h2 className="card-title text-2xl md:text-3xl font-bold text-gray-800">
                   {service.title}
                 </h2>
-                <span className="bg-primary/10 text-primary font-semibold px-3 py-1 rounded-full text-sm">
+                <span className="bg-primary/10 text-amber-600 font-semibold px-3 py-1 rounded-full text-sm">
                   ${service.price}
                 </span>
               </div>
@@ -232,7 +232,7 @@ const ServiceDetails = () => {
                   href={service.website}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center text-primary hover:text-primary/80 font-medium transition-colors"
+                  className="inline-flex items-center text-amber-600 hover:text-primary/80 font-medium transition-colors"
                 >
                   Visit Website
                   <svg
@@ -265,7 +265,7 @@ const ServiceDetails = () => {
             {user ? (
               <div className="bg-gray-50 p-4 rounded-lg mb-6">
                 <textarea
-                  className="w-full p-3 border border-gray-300 rounded-lg mb-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full p-3 border border-gray-300 rounded-lg mb-3 focus:ring-2 focus:ring-amber-500 focus:border-transparent"
                   rows="4"
                   placeholder="Write your review..."
                   value={reviewText}
@@ -284,13 +284,13 @@ const ServiceDetails = () => {
                 </div>
                 <button
                   onClick={handleAddReview}
-                  className="bg-blue-600 text-white px-5 py-2.5 rounded-lg hover:bg-blue-700 transition font-medium w-full sm:w-auto"
+                  className="bg-amber-600 text-white px-5 py-2.5 rounded-lg hover:bg-amber-700 transition font-medium w-full sm:w-auto"
                 >
                   Add Review
                 </button>
               </div>
             ) : (
-              <div className="bg-blue-50 border border-blue-200 text-blue-800 p-4 rounded-lg mb-6">
+              <div className="bg-blue-50 border border-blue-200 text-amber-800 p-4 rounded-lg mb-6">
                 <p>Please log in to add a review.</p>
               </div>
             )}

@@ -10,6 +10,8 @@ import AllServices from "../Pages/AllServices";
 import MyReviews from "../Pages/MyReviews";
 import MyServices from "../Pages/MyServices";
 import PrivateRoute from "./PrivateRoute";
+import Promotional from "../Pages/Promotional";
+import Pricing from "../Component/Pricing";
 
 
 
@@ -42,6 +44,14 @@ export const router = createBrowserRouter([
       {
         path : "/all-Services",
         element: <AllServices></AllServices>,
+      },
+      {
+        path : "/promotion",
+        element: <Promotional></Promotional>,
+      },
+      {
+        path : "/pricing",
+        element: <Pricing></Pricing>,
       },
       {
         path : "/my-reviews",
