@@ -26,19 +26,19 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4">
               <a
-                href="#"
+                href="https://www.linkedin.com/in/rantubytes/"
                 className="text-gray-400 hover:text-amber-500 transition-colors"
               >
                 <FaLinkedin className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href="https://x.com/"
                 className="text-gray-400 hover:text-amber-500 transition-colors"
               >
                 <FaTwitter className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com"
                 className="text-gray-400 hover:text-amber-500 transition-colors"
               >
                 <FaInstagram className="w-5 h-5" />
@@ -76,7 +76,7 @@ const Footer = () => {
           {/* Support */}
           <div>
             <h3 className="text-lg font-semibold text-white mb-6 uppercase tracking-wider">
-              Support
+              Private
             </h3>
             <ul className="space-y-3">
               <li>
@@ -141,29 +141,9 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-500 text-sm">
+          <p className="text-gray-500 text-sm text-center">
             &copy; {currentYear} Rantu. All rights reserved.
           </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link
-              to="/"
-              className="text-gray-500 hover:text-amber-500 text-sm transition-colors"
-            >
-              Sitemap
-            </Link>
-            <Link
-              to="/"
-              className="text-gray-500 hover:text-amber-500 text-sm transition-colors"
-            >
-              Accessibility
-            </Link>
-            <Link
-              to="/"
-              className="text-gray-500 hover:text-amber-500 text-sm transition-colors"
-            >
-              Cookie Policy
-            </Link>
-          </div>
         </div>
       </div>
     </footer>

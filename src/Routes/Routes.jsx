@@ -13,7 +13,10 @@ import PrivateRoute from "./PrivateRoute";
 import Promotional from "../Pages/Promotional";
 import Pricing from "../Component/Pricing";
 
-
+// ✅ new imports
+import DashboardLayout from "../Layout/DashboardLayout";
+import UserDashboard from "../Pages/Dashboard/UserDashboard";
+import AdminDashboard from "../Pages/Dashboard/AdminDashboard";
 
 export const router = createBrowserRouter([
   {
@@ -21,46 +24,33 @@ export const router = createBrowserRouter([
     Component: Root,
     errorElement: <ErrorPage />,
     children: [
-      {
-        index: true,
-        Component : MainLayout ,
-      },
-      {
-        path : "/login",
-        element: <Login />,
-      },
-      {
-        path : "/register",
-        element: <Register></Register>,
-      },
-      {
-        path : "/add-service",
-        element: <PrivateRoute> <AddService></AddService> </PrivateRoute> ,
-      },
-      {
-        path : "/services/:id",
-        element:  <ServiceDetails></ServiceDetails> ,
-      },
-      {
-        path : "/all-Services",
-        element: <AllServices></AllServices>,
-      },
-      {
-        path : "/promotion",
-        element: <Promotional></Promotional>,
-      },
-      {
-        path : "/pricing",
-        element: <Pricing></Pricing>,
-      },
-      {
-        path : "/my-reviews",
-        element: <PrivateRoute><MyReviews></MyReviews></PrivateRoute> ,
-      },
-      {
-        path : "/my-service",
-        element: <PrivateRoute><MyServices></MyServices></PrivateRoute> ,
-      },
+      { index: true, Component: MainLayout },
+      { path: "/login", element: <Login /> },
+      { path: "/register", element: <Register /> },
+      { path: "/add-service", element: <PrivateRoute><AddService /></PrivateRoute> },
+      { path: "/services/:id", element: <ServiceDetails /> },
+      { path: "/all-Services", element: <AllServices /> },
+      { path: "/promotion", element: <Promotional /> },
+      { path: "/pricing", element: <Pricing /> },
+      { path: "/my-reviews", element: <PrivateRoute><MyReviews /></PrivateRoute> },
+      { path: "/my-service", element: <PrivateRoute><MyServices /></PrivateRoute> },
+    ],
+  },
+
+  // ✅ Dashboard Routes
+  {
+    path: "/dashboard",
+    element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
+    children: [
+      // USER
+      { path: "user", element: <UserDashboard /> },
+      { path: "user/my-reviews", element: <MyReviews /> },
+      { path: "user/my-services", element: <MyServices /> },
+      { path: "user/add-service", element: <AddService /> },
+
+      // ADMIN
+      { path: "admin", element: <AdminDashboard /> },
+      { path: "admin/manage-users", element: <h2>Manage Users</h2> },
     ],
   },
 ]);

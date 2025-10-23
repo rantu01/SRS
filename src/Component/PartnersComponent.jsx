@@ -85,10 +85,12 @@ const MeetOurPartners = () => {
           <span className="inline-block px-3 py-1 text-sm font-semibold text-amber-600 bg-amber-100 rounded-full mb-4">
             Our Network
           </span>
-          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl mb-4">
+          
+          <h2 className="text-3xl font-bold text-amber-900 sm:text-4xl ">
             Meet Our Valued Partners
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <div className="w-24 h-1.5 bg-amber-600 mx-auto rounded-full"></div>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto mt-4">
             We collaborate with industry leaders to deliver exceptional services and solutions.
           </p>
         </div>
