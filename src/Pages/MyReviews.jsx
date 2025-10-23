@@ -33,7 +33,7 @@ const MyReviews = () => {
         try {
           setIsLoading(true);
           const res = await axios.get(
-            `https://srs-backend-3wa7.onrender.com/my-reviews?userEmail=${user.email}`,
+            `https://srs-backend-3wa7.onrender.com/reviews/my-reviews?userEmail=${user.email}`,
             {
               withCredentials: true, // 🔒 This ensures the JWT cookie is sent
             }

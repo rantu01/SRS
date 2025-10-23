@@ -18,7 +18,7 @@ const MyServices = () => {
     setLoading(true);
     setError(null);
     fetch(
-      `https://srs-backend-3wa7.onrender.com/my-services?email=${user?.email}`,
+      `https://srs-backend-3wa7.onrender.com/services?email=${user?.email}`,
       {
         credentials: "include",
       }

@@ -38,8 +38,13 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li className="mx-2 my-1">
-        <NavLink to="/map" className={navLinkClass}>
-          Map
+        <NavLink to="/blogs" className={navLinkClass}>
+          Add Blogs
+        </NavLink>
+      </li>
+      <li className="mx-2 my-1">
+        <NavLink to="/blogs-here" className={navLinkClass}>
+          All Blogs
         </NavLink>
       </li>
 

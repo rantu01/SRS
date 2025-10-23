@@ -7,17 +7,20 @@ const FeaturedServices = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios
-      .get("https://srs-backend-3wa7.onrender.com/featured-services")
-      .then(res => {
-        setServices(res.data);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error("Error fetching services:", err);
-        setLoading(false);
-      });
-  }, []);
+  axios
+    .get("https://srs-backend-3wa7.onrender.com/services")
+    .then(res => {
+      // Limit to max 8 services
+      const limitedServices = res.data.slice(0, 8);
+      setServices(limitedServices);
+      setLoading(false);
+    })
+    .catch(err => {
+      console.error("Error fetching services:", err);
+      setLoading(false);
+    });
+}, []);
+
 
   if (loading) {
     return (
