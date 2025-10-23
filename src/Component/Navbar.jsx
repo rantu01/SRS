@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { NavLink } from "react-router"; // Correct import
+import { NavLink } from "react-router-dom"; // ✅ fixed import
 import { AuthContext } from "../context/AuthProvider";
 
 const Navbar = () => {
@@ -19,6 +19,7 @@ const Navbar = () => {
       ? "text-white font-semibold border-b-2 border-amber-500"
       : "text-gray-300 hover:text-white transition-colors duration-200";
 
+  // ✅ Updated nav items
   const navItems = (
     <>
       <li className="mx-2 my-1">
@@ -36,21 +37,13 @@ const Navbar = () => {
           Promotional
         </NavLink>
       </li>
+
       {user ? (
         <>
+          {/* ✅ Added Dashboard link */}
           <li className="mx-2 my-1">
-            <NavLink to="/add-service" className={navLinkClass}>
-              Add Service
-            </NavLink>
-          </li>
-          <li className="mx-2 my-1">
-            <NavLink to="/my-service" className={navLinkClass}>
-              My Services
-            </NavLink>
-          </li>
-          <li className="mx-2 my-1">
-            <NavLink to="/my-reviews" className={navLinkClass}>
-              My Reviews
+            <NavLink to="/dashboard/user" className={navLinkClass}>
+              Dashboard
             </NavLink>
           </li>
         </>
@@ -108,51 +101,30 @@ const Navbar = () => {
 
           {/* User Avatar & Logout or Login + Mobile Toggle */}
           <div className="flex items-center space-x-4">
-            {user ? (
-              <>
-                <div className="hidden sm:flex items-center space-x-2">
-                  <div className="avatar">
-                    <div className="w-9 h-9 rounded-full ring-2 ring-amber-500 ring-offset-2 overflow-hidden">
-                      <img
-                        src={user.photoURL || "/default-avatar.png"}
-                        alt={user.displayName || "User"}
-                        className="object-cover w-full h-full"
-                      />
-                    </div>
-                  </div>
-                  <span className="text-sm font-medium text-white">
-                    {user.displayName?.split(" ")[0] || "Welcome"}
-                  </span>
-                </div>
-                <button
-                  onClick={handleLogout}
-                  className="px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-lg shadow-md hover:shadow-lg transition duration-200 text-sm font-medium flex items-center"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4 mr-1"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+            {user && (
+              <div className="hidden sm:flex items-center space-x-2">
+                <div className="avatar">
+                  <div className="w-9 h-9 rounded-full ring-2 ring-amber-500 ring-offset-2 overflow-hidden">
+                    <img
+                      src={user.photoURL || "/default-avatar.png"}
+                      alt={user.displayName || "User"}
+                      className="object-cover w-full h-full"
                     />
-                  </svg>
-                  Logout
-                </button>
-              </>
-            ) : (
-              <NavLink
-                to="/login"
-                className="px-4 py-2 bg-amber-500 text-white rounded-lg shadow hover:bg-amber-600 transition duration-200 text-sm font-medium"
-              >
-                Sign In
-              </NavLink>
+                  </div>
+                </div>
+                <span className="text-sm font-medium text-white">
+                  {user.displayName?.split(" ")[0] || "Welcome"}
+                </span>
+              </div>
             )}
+            {user ? (
+              <button
+                onClick={handleLogout}
+                className="px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-lg shadow-md hover:shadow-lg transition duration-200 text-sm font-medium flex items-center"
+              >
+                Logout
+              </button>
+            ) : null}
 
             {/* Mobile Menu Button */}
             <div className="lg:hidden">
