@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { Helmet } from "react-helmet";
+import ServiceMap from "../Component/ServiceMap";
 
 const AllServices = () => {
   const [services, setServices] = useState([]);
@@ -12,6 +13,7 @@ const AllServices = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Fetch Services
   const fetchServices = async () => {
     setIsLoading(true);
     setError(null);
@@ -22,11 +24,17 @@ const AllServices = () => {
           params: {
             search: searchTerm,
             category: category,
-            sort: sortOption, // 🟢 Send sort option
+            sort: sortOption,
           },
         }
       );
-      setServices(response.data);
+      // Make sure every service has lat/lng
+      const servicesWithCoords = response.data.map((s) => ({
+        ...s,
+        lat: s.lat || 23.8103,
+        lng: s.lng || 90.4125,
+      }));
+      setServices(servicesWithCoords);
     } catch (err) {
       console.error("Error fetching services:", err);
       setError("Failed to load services. Please try again later.");
@@ -53,11 +61,13 @@ const AllServices = () => {
   }, []);
 
   return (
-    <div className="mx-auto px-12 sm:px-6 lg:px-8 py-12 bg-gradient-to-b from-amber-50">
+    <div className="mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-gradient-to-b from-amber-50 min-h-screen">
       <Helmet>
         <title>All Services | SRS</title>
       </Helmet>
+
       <div className="max-w-7xl mx-auto">
+        {/* Page Title */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-extrabold text-gray-900 mb-3">
             Discover Professional Services
@@ -67,6 +77,7 @@ const AllServices = () => {
             selection of professionals.
           </p>
         </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           {/* Left Side - Service Cards */}
           <div className="lg:col-span-8">
@@ -103,7 +114,7 @@ const AllServices = () => {
             )}
 
             {/* No Results */}
-            {!isLoading && !error && services.length === 0 ? (
+            {!isLoading && !error && services.length === 0 && (
               <div className="text-center py-16 bg-white rounded-xl shadow-sm border border-gray-100">
                 <svg
                   className="mx-auto h-12 w-12 text-gray-400"
@@ -126,7 +137,10 @@ const AllServices = () => {
                   looking for.
                 </p>
               </div>
-            ) : (
+            )}
+
+            {/* Service Cards */}
+            {!isLoading && !error && services.length > 0 && (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 {services.map((service) => (
                   <div
@@ -158,11 +172,8 @@ const AllServices = () => {
                       <p className="text-gray-600 mb-4 line-clamp-2">
                         {service.description}
                       </p>
-                      <p className="text-amber-600 mb-4 line-clamp-2">
-                        {service.category}
-                      </p>
                       <p className="text-amber-600 mb-4 line-clamp-2 font-bold">
-                        Company : {service.company}
+                        Company: {service.company}
                       </p>
                       <Link
                         to={`/services/${service._id}`}
@@ -173,7 +184,6 @@ const AllServices = () => {
                           className="ml-2 -mr-1 w-4 h-4"
                           fill="currentColor"
                           viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
                             fillRule="evenodd"
@@ -189,9 +199,10 @@ const AllServices = () => {
             )}
           </div>
 
-          {/* Right Side - Filters */}
-          <div className="lg:col-span-4">
-            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 space-y-6 sticky top-34 bg-gradient-to-br from-amber-50">
+          {/* Right Side - Filters + Map */}
+          <div className="lg:col-span-4 space-y-6">
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 space-y-6 sticky top-20 bg-gradient-to-br from-amber-50">
+              {/* Search */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Search Services
@@ -205,6 +216,7 @@ const AllServices = () => {
                 />
               </div>
 
+              {/* Category Filter */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Filter by Category
@@ -224,6 +236,7 @@ const AllServices = () => {
                 </select>
               </div>
 
+              {/* Sort Option */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Sort by
@@ -239,6 +252,14 @@ const AllServices = () => {
                   <option value="latest">Newest First</option>
                   <option value="oldest">Oldest First</option>
                 </select>
+              </div>
+
+              {/* Map */}
+              <div className="mt-6">
+                <h2 className="text-lg font-semibold text-gray-800 mb-3">
+                  Service Locations
+                </h2>
+                <ServiceMap services={services} />
               </div>
             </div>
           </div>

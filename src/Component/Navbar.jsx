@@ -37,6 +37,11 @@ const Navbar = () => {
           Promotional
         </NavLink>
       </li>
+      <li className="mx-2 my-1">
+        <NavLink to="/map" className={navLinkClass}>
+          Map
+        </NavLink>
+      </li>
 
       {user ? (
         <>
